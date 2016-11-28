@@ -1,0 +1,36 @@
+<header class="header">
+    <div class='overlay'>
+    <div class='logo'>
+        <h1>Books by Hackages</h1>
+    </div>
+    </div>
+</header>
+<main class="main-content">
+    <!--Menu filters-->
+    <bs-menu [categories]="categories" (categoryChanged)="clicked($event)"></bs-menu>
+
+    <!--List of books-->
+    <bs-book-list [books]="books"></bs-book-list>
+
+    <!--Sidebar navigation-->
+    <div>
+        <div [ngClass]="!navClosed ? 'filter filter-is-visible': 'filter'">
+            <form>
+            <div class="filter-block">
+                <h4>Search</h4>
+                <div class="filter-content">
+                    <form (submit)="search()">
+                        <input class="form-control" type="text" id="search"
+                               required
+                               [(ngModel)]="searchString" name="searchString" placeholder="Title or category">
+                    </form>
+
+                </div>
+            </div>
+            </form>
+            <a href="#0" class="close" (click)="toggleSideBar()">Close</a>
+        </div>
+
+        <a href="#0" class="filter-trigger" (click)="toggleSideBar()">Filters</a>
+    </div>
+</main>
